@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { RouterProvider } from "react-router/dom"
+import Body from "./Body"
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>
-      <div>Aditya Verma</div>
+      <Body />
     </>
   )
 }

@@ -1,5 +1,7 @@
 import React from 'react'
-import { createBrowserRouter } from 'react-router'
+import { createBrowserRouter, RouterProvider } from 'react-router'
+import Login from './Login'
+import Browse from './Browse'
 
 const Body = () => {
 
@@ -16,7 +18,7 @@ const Body = () => {
 
   return (
     <div>
-      
+      <RouterProvider router={appLayout} />
     </div>
   )
 }
