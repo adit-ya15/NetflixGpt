@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router/dom"
-import Body from "./Body"
+import Body from "./components/Body"
 
 
 function App() {
