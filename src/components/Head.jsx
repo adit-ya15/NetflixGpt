@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { validate } from '../utils/Validate';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { auth } from '../utils/Firebase';
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
 
 const Head = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [isSignUp, setSignUp] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
 
   // Controlled inputs (Netflix-like)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name,setName] = useState("");
 
   const [message, setMessage] = useState("");
 
@@ -28,6 +34,22 @@ const Head = () => {
           // Signed up 
           const user = userCredential.user;
           console.log(user)
+          updateProfile(user, {
+            displayName: name, 
+            photoURL: "	https://www.gstatic.com/mobilesdk/160505_mobilesdk/zerostate/2x/auth.png"
+          }).then(() => {
+            const {uid,email,displayName,photoURL} = auth.currentUser;
+                    dispatch(addUser({
+                      uid:uid,
+                      email:email,
+                      displayName:displayName,
+                      photoURL:photoURL
+                    }))
+            navigate('/browse')
+          }).catch((error) => {
+            setMessage(error.message)
+          });
+          
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -42,6 +64,7 @@ const Head = () => {
           // Signed in 
           const user = userCredential.user;
           console.log(user)
+          navigate('browse')
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -78,6 +101,8 @@ const Head = () => {
         {isSignUp && (
           <input
             type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder='Full Name'
             className='h-14 bg-[#0F0F0F] border border-[#323233] p-2 px-4 mb-5 rounded-sm font-bold'
           />
