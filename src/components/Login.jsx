@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { auth } from '../utils/Firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { userImage,loginPageBackgroundImage } from '../utils/constants';
 
 const Login = () => {
 
@@ -38,7 +39,7 @@ const Login = () => {
                     console.log(user)
                     updateProfile(user, {
                         displayName: name,
-                        photoURL: "	https://www.gstatic.com/mobilesdk/160505_mobilesdk/zerostate/2x/auth.png"
+                        photoURL: { userImage}
                     }).then(() => {
                         const { uid, email, displayName, photoURL } = auth.currentUser;
                         dispatch(addUser({
@@ -195,7 +196,7 @@ const Login = () => {
                 </form>
             </div>
             <div className='bg-cover bg-center'>
-                <img src="https://assets.nflxext.com/ffe/siteui/vlv3/58622d3e-49bc-482d-8b16-bddc4b672e8e/web/IN-en-20251110-TRIFECTA-perspective_281b0878-5972-49a4-9956-3f0cb5eb039b_large.jpg" alt="background image" />
+                <img src={loginPageBackgroundImage} alt="background image" />
             </div>
             <Footer />
         </div>
