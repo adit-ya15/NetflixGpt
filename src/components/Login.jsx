@@ -39,7 +39,7 @@ const Login = () => {
                     console.log(user)
                     updateProfile(user, {
                         displayName: name,
-                        photoURL: { userImage}
+                        photoURL: userImage
                     }).then(() => {
                         const { uid, email, displayName, photoURL } = auth.currentUser;
                         dispatch(addUser({
@@ -67,6 +67,14 @@ const Login = () => {
                     // Signed in 
                     const user = userCredential.user;
                     console.log(user)
+                    // Update redux store with signed-in user info
+                    const { uid, email: userEmail, displayName, photoURL } = user;
+                    dispatch(addUser({
+                        uid,
+                        email: userEmail,
+                        displayName,
+                        photoURL
+                    }));
                     
                 })
                 .catch((error) => {

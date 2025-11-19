@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
+
 const Footer = () => {
     const [language, setLanguage] = useState('English');
     return (
