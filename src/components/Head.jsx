@@ -1,11 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../utils/Firebase';
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
 import { useNavigate } from 'react-router';
 import { Logo } from '../utils/constants';
-import { signOut } from 'firebase/auth'
+import { signOut } from 'firebase/auth';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faBell, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 
 const Head = () => {
@@ -34,7 +36,6 @@ const Head = () => {
       }
     });
 
-    //unsubscribe on unmount
     return () => unsubscribe();
   }, [])
 
@@ -57,7 +58,7 @@ const Head = () => {
           className='w-42 h-20'
         />
       </div>}
-      {user && <div className='flex justify-between gap-2 w-screen items-center'>
+      {user && <div className="flex justify-between items-center text-white bg-transparent fixed top-0 left-0 w-full z-20 py-2 px-6">
         <div className='flex gap-2'>
           <img src={Logo} alt="Netflix logo" className='w-42 h-20' />
           <div className='flex items-center gap-2'>
@@ -69,29 +70,35 @@ const Head = () => {
             <a href="#">Browse by Languages</a>
           </div>
         </div>
-        <div className='flex gap-2 items-center pr-2'>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJMlaskpawLnP7H4Mg-1qLGM4PLwiQ7uPmeg&s"
-            alt="search icon"
-            className='w-10 h-10'
+        <div className='flex gap-4 items-center pr-2'>
+
+          <FontAwesomeIcon
+            icon={faSearch}
+            className='text-white text-xl cursor-pointer'
           />
+
           <a href="#">Children</a>
-          <img
-            src="https://images.rawpixel.com/image_png_social_square/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjkzMi1uaW5nLTc3LnBuZw.png"
-            alt="bell icon"
-            className='w-10 h-10'
+
+          <FontAwesomeIcon
+            icon={faBell}
+            className='text-white text-xl cursor-pointer'
           />
-          <img src={user.photoURL} alt=""
-            className='w-10 h-10' />
+
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGkh54EH2IFEyvZeZJJ9K7yf0EwAM5pJyR4w&s"
-            alt=""
-            className='w-6 h-6'
+            src={user.photoURL}
+            alt="user"
+            className='w-10 h-10 rounded'
+          />
+
+          <FontAwesomeIcon
+            icon={faCaretDown}
+            className='text-white text-xl cursor-pointer'
             onClick={() => setOpen(!open)}
           />
-          <ul className={`${open ? "block" : "hidden"} bg-white p-2 shadow rounded absolute right-0 mt-38 mr-2`}>
-            <li>Accounts</li>
-            <li>Help</li>
+
+          <ul className={`${open ? "block" : "hidden"} bg-white p-2 shadow rounded absolute right-0 mt-42 mr-2`}>
+            <li className='text-black'>Accounts</li>
+            <li className='text-black'>Help</li>
             <li>
               <button
                 className='bg-[#E50914] w-28 cursor-pointer rounded-lg p-2 font-bold mt-2'
@@ -99,7 +106,6 @@ const Head = () => {
               >
                 Sign Out
               </button>
-
             </li>
           </ul>
         </div>

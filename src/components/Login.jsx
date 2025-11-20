@@ -15,7 +15,6 @@ const Login = () => {
     const [isSignUp, setSignUp] = useState(false);
     const [isChecked, setIsChecked] = useState(true);
 
-    // Controlled inputs (Netflix-like)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -29,12 +28,12 @@ const Login = () => {
         if (msg !== null) return;
 
         if (isSignUp) {
-            // Sign Up logic here
+            
             console.log("Signing Up with:", { email, password });
 
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    // Signed up 
+                    
                     const user = userCredential.user;
                     console.log(user)
                     updateProfile(user, {
@@ -60,14 +59,14 @@ const Login = () => {
                     setMessage(errorCode + '-' + errorMessage)
                 });
         } else {
-            // Sign In logic here
+            
             console.log("Signing In with:", { email, password });
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    // Signed in 
+                    
                     const user = userCredential.user;
                     console.log(user)
-                    // Update redux store with signed-in user info
+                    
                     const { uid, email: userEmail, displayName, photoURL } = user;
                     dispatch(addUser({
                         uid,
@@ -85,7 +84,7 @@ const Login = () => {
 
         };
     }
-    // Red border when error exists
+ 
     const errorStyle = message ? "border-red-500" : "border-[#323233]";
 
     return (
@@ -114,7 +113,7 @@ const Login = () => {
                         />
                     )}
 
-                    {/* Email */}
+                    
                     <input
                         type="text"
                         value={email}
@@ -123,7 +122,7 @@ const Login = () => {
                         className={`h-14 bg-[#0F0F0F] border p-2 px-4 mb-5 rounded-sm font-bold ${errorStyle}`}
                     />
 
-                    {/* Password */}
+                    
                     <input
                         type="password"
                         value={password}
@@ -134,7 +133,7 @@ const Login = () => {
 
                     <p className='text-red-500 mb-1'>{message}</p>
 
-                    {/* Button */}
+                    
                     {isSignUp ? (
                         <button
                             className='bg-[#E50914] w-full rounded-lg p-2 mb-5 font-bold'
@@ -163,7 +162,6 @@ const Login = () => {
                         <a href="#" className='text-center underline mb-6'>Forgot Password?</a>
                     )}
 
-                    {/* Checkbox */}
                     <div className='mb-4'>
                         <input
                             type="checkbox"
@@ -175,7 +173,6 @@ const Login = () => {
                         <span className='text-[16px] font-bold'>Remember me</span>
                     </div>
 
-                    {/* Toggle Sign In / Sign Up */}
                     {isSignUp ? (
                         <p className='text-[#B7B7B7] text-[16px] mb-5'>
                             Already registered?
