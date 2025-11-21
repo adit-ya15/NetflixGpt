@@ -4,6 +4,7 @@ import { faPlay, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 const VideoTitle = ({ movie }) => {
   const [showOverview, setShowOverview] = useState(true);
+  console.log(movie.id)
 
   useEffect(() => {
     const timer = setTimeout(() => setShowOverview(false), 8000);

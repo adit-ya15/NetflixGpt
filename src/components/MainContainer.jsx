@@ -6,6 +6,7 @@ import VideoTitle from './VideoTitle';
 const MainContainer = () => {
   const movies = useNowPlayingMovies();
   if (movies.length === 0) return null;
+ 
 
   const index = Math.floor(Math.random() * movies.length);
   const randomMovie = movies[index];
