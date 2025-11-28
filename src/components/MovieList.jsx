@@ -4,7 +4,7 @@ import MovieCard from './MovieCard'
 const MovieList = ({ title, movies }) => {
   return (
     <div className='px-6'>
-      <h1 className="text-2xl font-bold text-white mb-2">
+      <h1 className="text-2xl font-bold text-white mb-4">
         {title}
       </h1>
 
