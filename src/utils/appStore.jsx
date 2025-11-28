@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './userSlice'
 import movieReducer from './movieSlice.js'
+import GptReducer from './GptSlice.jsx'
+import langReducer from './langSlice.jsx'
 
 
 const appStore = configureStore({
@@ -8,17 +10,10 @@ const appStore = configureStore({
     reducer: {
         user:userReducer,
         movies:movieReducer,
+        gpt:GptReducer,
+        lang:langReducer,
     },
     
 });
-
-
-try {
-    
-    console.log('Initial Redux store state:', appStore.getState());
-} catch (e) {
-    
-    console.warn('Could not log initial store state', e);
-}
 
 export default appStore

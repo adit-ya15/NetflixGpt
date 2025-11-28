@@ -12,7 +12,7 @@ const BackGroundVideo = ({ movie }) => {
   return (
     <div className="absolute left-0 w-full h-screen -z-10 overflow-hidden">
       <iframe
-        className="w-full h-full scale-125 pointer-events-none"
+        className="w-full h-full scale-130 pointer-events-none"
         src={youtubeUrl}
         title="YouTube video player"
         frameBorder="0"

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../utils/Firebase';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
 import { useNavigate } from 'react-router';
 import { Logo } from '../utils/constants';
 import { signOut } from 'firebase/auth';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faBell, faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faBell, faCaretDown, faHouse } from "@fortawesome/free-solid-svg-icons";
+import { toggleGpt } from '../utils/GptSlice';
+import choosenLanguage from '../Translate/language';
 
 
 const Head = () => {
@@ -16,6 +18,10 @@ const Head = () => {
   const dispatch = useDispatch()
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
+  const selectedLang = useSelector((store) => store.lang.identifier)
+  const isGpt = useSelector((store) => store.gpt.isGpt)
+ 
+  
 
   useEffect(() => {
 
@@ -49,6 +55,10 @@ const Head = () => {
     });
   }
 
+  const handleGptSearch = () =>{
+    dispatch(toggleGpt())
+  }
+
   return (
     <>
       {!user && <div className='absolute left-[8%] top-5'>
@@ -58,26 +68,30 @@ const Head = () => {
           className='w-42 h-20'
         />
       </div>}
-      {user && <div className="flex justify-between items-center text-white bg-transparent fixed top-0 left-0 w-full z-20 py-2 px-6">
+      {user && <div
+  className={`flex justify-between items-center text-white fixed top-0 left-0 w-full z-20 py-2 px-6 
+    `}
+>
         <div className='flex gap-2'>
           <img src={Logo} alt="Netflix logo" className='w-42 h-20' />
           <div className='flex items-center gap-2'>
-            <a href="#">Home</a>
-            <a href="#">TV Shows</a>
-            <a href="#">Movies</a>
-            <a href="#">New & Popular</a>
-            <a href="#">My List</a>
-            <a href="#">Browse by Languages</a>
+            <a href="#">{choosenLanguage[selectedLang].Home}</a>
+            <a href="#">{choosenLanguage[selectedLang].TvShows}</a>
+            <a href="#">{choosenLanguage[selectedLang].Movies}</a>
+            <a href="#">{choosenLanguage[selectedLang].NewPopular}</a>
+            <a href="#">{choosenLanguage[selectedLang].MyList}</a>
+            <a href="#">{choosenLanguage[selectedLang].Browselanguages}</a>
           </div>
         </div>
         <div className='flex gap-4 items-center pr-2'>
 
           <FontAwesomeIcon
-            icon={faSearch}
+            icon={isGpt? faHouse:faSearch}
             className='text-white text-xl cursor-pointer'
+            onClick={handleGptSearch}
           />
 
-          <a href="#">Children</a>
+          <a href="#">{choosenLanguage[selectedLang].Children}</a>
 
           <FontAwesomeIcon
             icon={faBell}
