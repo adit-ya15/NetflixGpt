@@ -8,7 +8,6 @@ const MovieList = ({ title, movies }) => {
         {title}
       </h1>
 
-      {/* Horizontal scrolling row */}
       <div className="flex overflow-x-scroll movie-row gap-4 pb-4">
         {movies?.map((movie) => (
           <MovieCard imageId={movie?.poster_path} key={movie.id} />
