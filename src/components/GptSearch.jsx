@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 
 const GptSearch = () => {
 
-    const { movieResults, geminiNames } = useSelector(store => store.gpt)
+    const { geminiNames } = useSelector(store => store.gpt)
 
     return (
         <div>

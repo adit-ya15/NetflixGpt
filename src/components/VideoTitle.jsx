@@ -4,7 +4,6 @@ import { faPlay, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 const VideoTitle = ({ movie }) => {
   const [showOverview, setShowOverview] = useState(true);
-  console.log(movie.id)
 
   useEffect(() => {
     const timer = setTimeout(() => setShowOverview(false), 8000);
@@ -12,7 +11,7 @@ const VideoTitle = ({ movie }) => {
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 h-screen flex flex-col justify-center pl-12 text-white bg-gradient-to-r from-black/80 to-transparent z-10">
+    <div className="absolute top-0 left-0 h-screen flex flex-col justify-center pl-12 text-white bg-linear-to-r from-black/80 to-transparent z-10">
       <h1 className="text-6xl font-extrabold w-[40%] drop-shadow-xl">
         {movie?.original_title}
       </h1>

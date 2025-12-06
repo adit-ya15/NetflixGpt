@@ -3,7 +3,7 @@ import useMovie from '../Hooks/useMovie';
 
 const BackGroundVideo = ({ movie }) => {
   const trailer = useMovie(movie?.id);
-  console.log(movie.id)
+  
 
   if (!trailer) return null;
 

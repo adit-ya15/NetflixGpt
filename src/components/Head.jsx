@@ -47,7 +47,7 @@ const Head = () => {
     });
 
     return () => unsubscribe();
-  }, [])
+  }, [dispatch, navigate, location.pathname])
 
   const handleSignOut = () => {
     console.log("Sign Out clicked");

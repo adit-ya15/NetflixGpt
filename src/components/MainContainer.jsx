@@ -1,22 +1,18 @@
-import React from 'react';
-import useNowPlayingMovies from '../Hooks/useNowPlayingMovies';
+import React, { useMemo } from 'react'; 
 import BackGroundVideo from './BackGroundVideo';
 import VideoTitle from './VideoTitle';
+import { useSelector } from 'react-redux';
 
 const MainContainer = () => {
-  const movies = useNowPlayingMovies();
-  if (movies.length === 0) return null;
- 
-
-  const index = Math.floor(Math.random() * movies.length);
-  const randomMovie = movies[index];
+  const movies = useSelector(store => store.movies?.popular);
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      <VideoTitle movie={randomMovie} />
-      <BackGroundVideo movie={randomMovie} />
+      <VideoTitle movie={movies[0]} />
+      <BackGroundVideo movie={movies[0]} />
     </div>
   );
+  
 };
 
 export default MainContainer;

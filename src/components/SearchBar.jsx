@@ -13,7 +13,7 @@ const SearchBar = () => {
     const dispatch = useDispatch();
     
     // We need geminiNames to check the condition for CSS
-    const { movieResults, geminiNames } = useSelector(store => store.gpt)
+    const { geminiNames } = useSelector(store => store.gpt)
     
     const searchMovieTMDB = async (movie) => {
         const data = await fetch('https://api.themoviedb.org/3/search/movie?query='+movie+'&include_adult=false&language=en-US&page=1', API_OPTIONS)

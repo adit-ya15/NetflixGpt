@@ -8,10 +8,12 @@ import useUpcoming from '../Hooks/useUpcoming'
 import Footer from './Footer'
 import { useSelector } from 'react-redux'
 import GptSearch from './GptSearch'
+import useNowPlayingMovies from '../Hooks/useNowPlayingMovies'
 
 
 const Browse = () => {
 
+  useNowPlayingMovies()
   usePopularMovies()
   useTopRated()
   useUpcoming()
