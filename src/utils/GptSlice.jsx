@@ -4,17 +4,30 @@ const GptSlice = createSlice({
     name:"gpt",
     initialState:{
         isGpt:false,
-        geminiMovies:[]
+        isLoading:false,
+        geminiNames:null,
+        movieResults:null
     },
     reducers:{
         toggleGpt:(state) => {
             state.isGpt = !state.isGpt;
         },
         addGeminiMovies:(state,action) => {
-            state.geminiMovies = action.payload
+            const { geminiNames, movieResults} = action.payload
+            state.geminiNames = geminiNames
+            state.movieResults = movieResults
+            state.isLoading = false
+        },
+        setLoading: (state, action) => { 
+             state.isLoading = action.payload;
+        },
+        clearGptMovieResults: (state) => {
+            state.geminiNames = null;
+            state.movieResults = null;
+            state.isGpt = false;
         }
     }
 })
 
-export const {toggleGpt,addGeminiMovies} = GptSlice.actions; 
+export const {toggleGpt,addGeminiMovies,setLoading,clearGptMovieResults} = GptSlice.actions; 
 export default GptSlice.reducer;

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../utils/Firebase';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { Logo } from '../utils/constants';
 import { signOut } from 'firebase/auth';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBell, faCaretDown, faHouse } from "@fortawesome/free-solid-svg-icons";
-import { toggleGpt } from '../utils/GptSlice';
+import { clearGptMovieResults, toggleGpt } from '../utils/GptSlice';
 import choosenLanguage from '../Translate/language';
 
 
@@ -20,8 +20,9 @@ const Head = () => {
   const [open, setOpen] = useState(false);
   const selectedLang = useSelector((store) => store.lang.identifier)
   const isGpt = useSelector((store) => store.gpt.isGpt)
- 
-  
+  const location = useLocation()
+
+
 
   useEffect(() => {
 
@@ -35,10 +36,13 @@ const Head = () => {
           displayName: displayName,
           photoURL: photoURL
         }))
-        navigate('/browse')
+        if (location.pathname === '/') {
+          navigate('/browse');
+        }
       } else {
         navigate('/')
         dispatch(removeUser())
+        dispatch(clearGptMovieResults())
       }
     });
 
@@ -47,7 +51,6 @@ const Head = () => {
 
   const handleSignOut = () => {
     console.log("Sign Out clicked");
-    // Add sign-out logic here
     signOut(auth).then(() => {
 
     }).catch((error) => {
@@ -55,7 +58,7 @@ const Head = () => {
     });
   }
 
-  const handleGptSearch = () =>{
+  const handleGptSearch = () => {
     dispatch(toggleGpt())
   }
 
@@ -69,9 +72,9 @@ const Head = () => {
         />
       </div>}
       {user && <div
-  className={`flex justify-between items-center text-white fixed top-0 left-0 w-full z-20 py-2 px-6 
+        className={`flex justify-between items-center text-white fixed top-0 left-0 w-full z-20 py-2 px-6 
     `}
->
+      >
         <div className='flex gap-2'>
           <img src={Logo} alt="Netflix logo" className='w-42 h-20' />
           <div className='flex items-center gap-2'>
@@ -86,7 +89,7 @@ const Head = () => {
         <div className='flex gap-4 items-center pr-2'>
 
           <FontAwesomeIcon
-            icon={isGpt? faHouse:faSearch}
+            icon={isGpt ? faHouse : faSearch}
             className='text-white text-xl cursor-pointer'
             onClick={handleGptSearch}
           />

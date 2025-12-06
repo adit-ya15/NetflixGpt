@@ -6,7 +6,7 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNzhiZDU5ZmU4YzUwNGFjNDQ4ZGFjZjJmYmNmYWM2ZSIsIm5iZiI6MTc2MzYwOTQ4MC4xMjYwMDAyLCJzdWIiOiI2OTFlOGI4ODZmMmJmZTZiMGE0YTI3ZjAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.fKaaXRZoRQyYwJ9_EEk93GuxU02smMxCJ4H5Zd-q3qA'
+        Authorization: 'Bearer ' + import.meta.env.VITE_TMDB_API_KEY,
     }
 };
 
@@ -14,4 +14,4 @@ export const IMAGE_URL = "https://image.tmdb.org/t/p/w780"
 
 export const LANGUAGES_SUPPORTED = [{identifier:"en",name:"English"},{identifier:"hindi",name:"Hindi"}]
 
-export const GEMINI_API_KEY = 'AIzaSyClD6towFyqCUuTX8TccVSlmJAn-cakYEg';
+export const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
