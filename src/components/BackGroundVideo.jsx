@@ -10,7 +10,7 @@ const BackGroundVideo = ({ movie }) => {
   const youtubeUrl = `https://www.youtube.com/embed/${trailer}?autoplay=1&mute=1&loop=1&controls=0&playlist=${trailer}&modestbranding=1&rel=0&showinfo=0`;
 
   return (
-    <div className="absolute left-0 w-full h-screen -z-10 overflow-hidden">
+    <div className="absolute left-0 w-full h-screen -z-10 overflow-hidden -mt-32 lg:mt-0">
       <iframe
         className="w-full h-full scale-130 pointer-events-none"
         src={youtubeUrl}

@@ -12,17 +12,17 @@ const VideoTitle = ({ movie }) => {
 
   return (
     <div className="absolute top-0 left-0 h-screen flex flex-col justify-center pl-12 text-white bg-linear-to-r from-black/80 to-transparent z-10">
-      <h1 className="text-6xl font-extrabold w-[40%] drop-shadow-xl">
+      <h1 className="md:text-6xl text-3xl font-extrabold w-[40%] drop-shadow-xl md:block hidden md:-mt-62 lg:mt-0">
         {movie?.original_title}
       </h1>
 
       {showOverview && (
-        <p className="mt-4 text-lg w-[35%] opacity-90">
+        <p className="mt-4 text-lg w-[35%] opacity-90 hidden lg:block">
           {movie?.overview}
         </p>
       )}
 
-      <div className="mt-6 flex gap-4">
+      <div className=" mt-1 sm:mt-6 md:flex gap-1 sm:gap-4 hidden ">
 
         <button className="
           px-6 py-3 bg-white text-black rounded-md text-lg font-semibold 

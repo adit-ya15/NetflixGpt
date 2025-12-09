@@ -72,12 +72,12 @@ const Head = () => {
         />
       </div>}
       {user && <div
-        className={`flex justify-between items-center text-white fixed top-0 left-0 w-full z-20 py-2 px-6 
+        className={`flex justify-between items-center text-white fixed top-0 left-0 w-full z-20 py-2 px-0 md:px-6 lg:px-6 
     `}
       >
         <div className='flex gap-2'>
-          <img src={Logo} alt="Netflix logo" className='w-42 h-20' />
-          <div className='flex items-center gap-2'>
+          <img src={Logo} alt="Netflix logo" className='w-38 h-18  sm:w-42 sm:h-20' />
+          <div className='hidden lg:flex items-center gap-2'>
             <a href="#">{choosenLanguage[selectedLang].Home}</a>
             <a href="#">{choosenLanguage[selectedLang].TvShows}</a>
             <a href="#">{choosenLanguage[selectedLang].Movies}</a>
@@ -86,7 +86,7 @@ const Head = () => {
             <a href="#">{choosenLanguage[selectedLang].Browselanguages}</a>
           </div>
         </div>
-        <div className='flex gap-4 items-center pr-2'>
+        <div className='flex gap-1 md:gap-4 lg:gap-4 items-center pr-2'>
 
           <FontAwesomeIcon
             icon={isGpt ? faHouse : faSearch}
@@ -94,12 +94,14 @@ const Head = () => {
             onClick={handleGptSearch}
           />
 
-          <a href="#">{choosenLanguage[selectedLang].Children}</a>
+          <div className='hidden lg:flex gap-4 items-center'>
+            <a href="#">{choosenLanguage[selectedLang].Children}</a>
 
-          <FontAwesomeIcon
-            icon={faBell}
-            className='text-white text-xl cursor-pointer'
-          />
+            <FontAwesomeIcon
+              icon={faBell}
+              className='text-white text-xl cursor-pointer'
+            />
+          </div>
 
           <img
             src={user.photoURL}
@@ -113,12 +115,12 @@ const Head = () => {
             onClick={() => setOpen(!open)}
           />
 
-          <ul className={`${open ? "block" : "hidden"} bg-white p-2 shadow rounded absolute right-0 mt-42 mr-2`}>
+          <ul className={`${open ? "block" : "hidden"} bg-white sm:p-2 shadow rounded mt-42 p-1 absolute right-0 sm:mt-42 sm:mr-2`}>
             <li className='text-black'>Accounts</li>
             <li className='text-black'>Help</li>
             <li>
               <button
-                className='bg-[#E50914] w-28 cursor-pointer rounded-lg p-2 font-bold mt-2'
+                className='bg-[#E50914] w-22 sm:w-28 cursor-pointer rounded-lg p-2 font-bold mt-2'
                 onClick={handleSignOut}
               >
                 Sign Out

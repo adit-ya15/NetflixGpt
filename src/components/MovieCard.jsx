@@ -9,7 +9,7 @@ const MovieCard = ({ imageId }) => {
       className="
         relative w-40 md:w-48 flex-shrink-0
         transition-transform duration-300 ease-out
-        hover:scale-110 hover:z-20
+        hover:scale-110 hover:z-20 
       "
     >
       {/* Poster */}
@@ -17,7 +17,7 @@ const MovieCard = ({ imageId }) => {
         <img
           src={IMAGE_URL + imageId}
           alt="movie"
-          className="w-full h-full object-cover rounded-md"
+          className="w-[90%] md:w-full h-full object-cover rounded-md "
         />
 
         {/* Hover overlay */}

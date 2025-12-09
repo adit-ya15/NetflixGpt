@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react'; 
+import React from 'react'; 
 import BackGroundVideo from './BackGroundVideo';
 import VideoTitle from './VideoTitle';
 import { useSelector } from 'react-redux';
 
 const MainContainer = () => {
   const movies = useSelector(store => store.movies?.popular);
+  if(!movies || movies.length === 0) return null;
 
   return (
     <div className="relative h-screen w-full overflow-hidden">

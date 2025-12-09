@@ -11,10 +11,10 @@ const GptSearch = () => {
     return (
         <div>
             <div className='bg-cover bg-center min-h-[655px]'>
-                <img src={loginPageBackgroundImage} alt="background image" className='h-[676px] w-full'/>
+                <img src={loginPageBackgroundImage} alt="background image" className='h-[600px] md:h-[892px] lg:[676px] w-full'/>
                 {geminiNames && <div>
-                    <img src={loginPageBackgroundImage} alt="background image" className='h-[676px] w-full' />
-                <img src={loginPageBackgroundImage} alt="background image" className='h-[679px] w-full' />
+                    <img src={loginPageBackgroundImage} alt="background image" className='h-[600px] w-full' />
+                <img src={loginPageBackgroundImage} alt="background image" className='h-[600px] w-full' />
                 </div>}
 
             </div>

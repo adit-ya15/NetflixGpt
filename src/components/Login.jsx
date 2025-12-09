@@ -90,10 +90,10 @@ const Login = () => {
     return (
 
         <div>
-            <div className='bg-linear-to-r from-[#0000007e] to-[#0000007e] absolute h-[855.07px] w-full'>
+            <div className='bg-linear-to-r from-[#0000007e] to-[#0000007e] absolute h-[752px] sm:h-[855.07px] w-full'>
                 <Head />
                 <form
-                    className='w-[480px] bg-black absolute left-[480px] top-28 text-white flex flex-col p-16 rounded-lg m-4 ml-5 opacity-80'
+                    className='w-screen sm:w-[480px] bg-black absolute left-0 sm:left-28 md:left-36 lg:left-[480px] top-28 text-white flex flex-col p-6 sm:p-16 rounded-lg m-0 sm:m-4 sm:ml-5 opacity-80'
                     onSubmit={(e) => e.preventDefault()}
                 >
 
@@ -200,8 +200,8 @@ const Login = () => {
                     </p>
                 </form>
             </div>
-            <div className='bg-cover bg-center'>
-                <img src={loginPageBackgroundImage} alt="background image" />
+            <div className='h-screen lg:bg-cover lg:bg-center md:-mb-85 lg:mb-0'>
+                <img src={loginPageBackgroundImage} alt="background image" className='h-screen w-screen sm:h-[855px]  lg:h-[854px]'/>
             </div>
             <Footer />
         </div>

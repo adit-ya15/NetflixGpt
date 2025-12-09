@@ -24,6 +24,7 @@ const SearchBar = () => {
     const getGeminiMovies = async () => {
 
         dispatch(setLoading(true))
+        console.log("Current Key:", import.meta.env.VITE_GEMINI_API_KEY);
 
         try {
             const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
@@ -54,13 +55,13 @@ const SearchBar = () => {
     }
 
     return (
-        <div className={`bg-linear-to-r from-[#0000007e] to-[#0000007e] w-full absolute top-0 ${geminiNames ? "min-h-[2030px]" : "min-h-[679px]"}`}>
-            <div className='flex justify-center mt-32'>
+        <div className={`bg-linear-to-r from-[#0000007e] to-[#0000007e] w-full absolute top-0 ${geminiNames ? "min-h-[2093px]" : "min-h-[679px] md:min-h-[892px]"}`}>
+            <div className='flex justify-center sm:mt-32 mt-36'>
                 <input type="text" placeholder={choosenLanguage[selectedLang].gptSearchPlaceholder}
                     onChange={(e) => setInputText(e.target.value)}
                     className='bg-white p-4  w-[50vw] mr-1 rounded-sm'
                 />
-                <button className='bg-[#E50914] rounded-sm p-4 w-[10vw] cursor-pointer'
+                <button className='bg-[#E50914] rounded-sm p-4 w-20 sm:w-[10vw] cursor-pointer'
                     onClick={() => getGeminiMovies()}
                 >{choosenLanguage[selectedLang].Search}</button>
             </div>
