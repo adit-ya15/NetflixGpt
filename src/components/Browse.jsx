@@ -26,9 +26,8 @@ const Browse = () => {
       {isGpt ? <GptSearch /> : <>
         <MainContainer />
         <SecondaryContainer />
+        <Footer />
       </>}
-
-      <Footer />
     </>
   )
 }

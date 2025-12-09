@@ -12,8 +12,8 @@ const SearchBar = () => {
     const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
     const dispatch = useDispatch();
     
-    // We need geminiNames to check the condition for CSS
-    const { geminiNames } = useSelector(store => store.gpt)
+    
+    const { geminiNames, isLoading } = useSelector(store => store.gpt);
     
     const searchMovieTMDB = async (movie) => {
         const data = await fetch('https://api.themoviedb.org/3/search/movie?query='+movie+'&include_adult=false&language=en-US&page=1', API_OPTIONS)
@@ -51,19 +51,25 @@ const SearchBar = () => {
 
         } catch (error) {
             console.error("Error getting suggestions:", error);
+            dispatch(setLoading(false));
         }
     }
-
+    const shouldAllowScroll = geminiNames;
     return (
-        <div className={`bg-linear-to-r from-[#0000007e] to-[#0000007e] w-full absolute top-0 ${geminiNames ? "min-h-[2093px]" : "min-h-[679px] md:min-h-[892px]"}`}>
-            <div className='flex justify-center sm:mt-32 mt-36'>
-                <input type="text" placeholder={choosenLanguage[selectedLang].gptSearchPlaceholder}
+        <div className='bg-linear-to-r from-[#0000007e] to-[#0000007e] w-full absolute top-0 h-[800px] sm:h-[910px] md:h-[1230px] lg:h-[910px] z-10'>
+            <div className='flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-1 mt-20 sm:mt-32 px-2 sm:px-0'>
+                <input 
+                    type="text" 
+                    placeholder={choosenLanguage[selectedLang].gptSearchPlaceholder}
                     onChange={(e) => setInputText(e.target.value)}
-                    className='bg-white p-4  w-[50vw] mr-1 rounded-sm'
+                    className='bg-white p-3 sm:p-4 w-full sm:w-96 md:w-[50vw] lg:w-[45vw] rounded-sm text-sm sm:text-base'
                 />
-                <button className='bg-[#E50914] rounded-sm p-4 w-20 sm:w-[10vw] cursor-pointer'
+                <button 
+                    className='bg-[#E50914] rounded-sm p-3 sm:p-4 w-full sm:w-24 md:w-28 lg:w-32 cursor-pointer font-semibold text-sm sm:text-base'
                     onClick={() => getGeminiMovies()}
-                >{choosenLanguage[selectedLang].Search}</button>
+                >
+                    {choosenLanguage[selectedLang].Search}
+                </button>
             </div>
         </div>
     )
