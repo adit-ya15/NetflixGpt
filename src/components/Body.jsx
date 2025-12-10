@@ -5,9 +5,6 @@ import Browse from './Browse'
 
 const MovieDetail = lazy(() => import('./MovieDetail'))
 
-
-
-
 const Body = () => {
   
   const appLayout = createBrowserRouter([
