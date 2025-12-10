@@ -15,3 +15,6 @@
 body::-webkit-scrollbar {
   display: none;
 }
+.bg-gradient-radial {
+  background-image: radial-gradient(circle at center bottom, rgba(0,0,0,0.8), transparent 70%);
+}

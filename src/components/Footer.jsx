@@ -17,7 +17,7 @@ const Footer = () => {
         console.log(e.target.value)
     }
     return (
-        <div className='bg-[#161616] h-70 lg:h-90  md:h-86 w-full text-[#BABABA] pt-14 pl-4 lg:pl-36 text-[16px]  lg:mt-0'>
+        <div className='bg-[#141414] h-70 lg:h-90  md:h-86 w-full text-[#BABABA] pt-14 pl-4 lg:pl-22 lg:text-xl text-[16px]  lg:mt-0'>
             <h1 className='#B7B7B7 mb-5 sm:pt-12 lg:pt-12'>{choosenLanguage[selectedLang].FooterHeading}</h1>
             <div className='flex flex-col mb-5'>
                 <div className='flex gap-8 sm:gap-36 md:gap-42 lg:gap-56 mb-5 underline'>
@@ -26,7 +26,7 @@ const Footer = () => {
                     <a>{choosenLanguage[selectedLang].TermsOfUse} </a>
                     <a>{choosenLanguage[selectedLang].Privacy}</a>
                 </div>
-                <div className='flex gap-8 sm:gap-10 lg:gap-[120px] underline'>
+                <div className='flex gap-8 sm:gap-10 lg:gap-[90px] underline'>
                     <a>{choosenLanguage[selectedLang].CookiePreferences}</a>
                     <a>{choosenLanguage[selectedLang].CorporateInformation}</a>
                 </div>
