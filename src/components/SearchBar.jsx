@@ -22,10 +22,7 @@ const SearchBar = () => {
     }
 
     const getGeminiMovies = async () => {
-
         dispatch(setLoading(true))
-        console.log("Current Key:", import.meta.env.VITE_GEMINI_API_KEY);
-
         try {
             const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
@@ -42,11 +39,9 @@ const SearchBar = () => {
             const cleanJson = text.replace(/```json|```/g, '').trim();
             const movieNames = JSON.parse(cleanJson);
 
-            console.log("Movie Names from Gemini:", movieNames);
             const promiseArray = movieNames.map((movie) => searchMovieTMDB(movie))
             
             const tmdbResults = await Promise.all(promiseArray)
-            console.log(tmdbResults)
             dispatch(addGeminiMovies({geminiNames: movieNames, movieResults: tmdbResults}))
 
         } catch (error) {

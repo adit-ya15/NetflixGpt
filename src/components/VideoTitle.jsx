@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router';
 
 const VideoTitle = ({ movie }) => {
   const [showOverview, setShowOverview] = useState(true);
@@ -23,8 +24,9 @@ const VideoTitle = ({ movie }) => {
       )}
 
       <div className=" mt-1 sm:mt-6 md:flex gap-1 sm:gap-4 hidden ">
-
-        <button className="
+        <Link 
+          to={'/details/' + movie?.id}>
+          <button className="
           px-6 py-3 bg-white text-black rounded-md text-lg font-semibold 
         hover:bg-gray-200 transition 
           flex items-center gap-3
@@ -33,9 +35,11 @@ const VideoTitle = ({ movie }) => {
         ">
           <FontAwesomeIcon icon={faPlay} className="text-black text-xl" />
           Play
-        </button>
-
-        <button className="
+        </button>  
+        </Link>
+        <Link 
+          to={'/details/' + movie?.id}>
+          <button className="
           px-6 py-3 bg-gray-500/70 text-white rounded-md text-lg font-semibold 
         hover:bg-gray-600 transition 
           flex items-center gap-3
@@ -45,7 +49,8 @@ const VideoTitle = ({ movie }) => {
         ">
           <FontAwesomeIcon icon={faCircleInfo} className="text-white text-xl" />
           More Info
-        </button>
+        </button>  
+        </Link>
 
       </div>
     </div>

@@ -28,14 +28,10 @@ const Login = () => {
         if (msg !== null) return;
 
         if (isSignUp) {
-            
-            console.log("Signing Up with:", { email, password });
-
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     
                     const user = userCredential.user;
-                    console.log(user)
                     updateProfile(user, {
                         displayName: name,
                         photoURL: userImage
@@ -60,13 +56,11 @@ const Login = () => {
                 });
         } else {
             
-            console.log("Signing In with:", { email, password });
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     
                     const user = userCredential.user;
-                    console.log(user)
-                    
+                
                     const { uid, email: userEmail, displayName, photoURL } = user;
                     dispatch(addUser({
                         uid,
@@ -136,14 +130,14 @@ const Login = () => {
                     
                     {isSignUp ? (
                         <button
-                            className='bg-[#E50914] w-full rounded-lg p-2 mb-5 font-bold'
+                            className='bg-[#E50914] w-full rounded-lg p-2 mb-5 font-bold cursor-pointer'
                             onClick={handleSubmit}
                         >
                             Sign Up
                         </button>
                     ) : (
                         <button
-                            className='bg-[#E50914] w-full rounded-lg p-2 mb-5 font-bold'
+                            className='bg-[#E50914] w-full rounded-lg p-2 mb-5 font-bold cursor-pointer'
                             onClick={handleSubmit}
                         >
                             Sign In

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../utils/Firebase';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,8 +21,6 @@ const Head = () => {
   const selectedLang = useSelector((store) => store.lang.identifier)
   const isGpt = useSelector((store) => store.gpt.isGpt)
   const location = useLocation()
-
-
 
   useEffect(() => {
 
@@ -50,7 +48,6 @@ const Head = () => {
   }, [dispatch, navigate, location.pathname])
 
   const handleSignOut = () => {
-    console.log("Sign Out clicked");
     signOut(auth).then(() => {
 
     }).catch((error) => {
@@ -62,13 +59,30 @@ const Head = () => {
     dispatch(toggleGpt())
   }
 
+  const handleScroll = (id) => {
+    const element = document.getElementById(id);
+    if(element) {
+      element.scrollIntoView({behavior:"smooth"});
+    }
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <>
-      {!user && <div className='absolute left-[8%] top-5'>
+      {!user && <div className='absolute left-[8%] top-5'
+        
+      >
         <img
           src={Logo}
           alt="logo"
           className='w-42 h-20'
+          onClick={scrollToTop}
         />
       </div>}
       {user && <div
@@ -76,14 +90,13 @@ const Head = () => {
     `}
       >
         <div className='flex gap-2'>
-          <img src={Logo} alt="Netflix logo" className='w-38 h-18  sm:w-42 sm:h-20' />
-          <div className='hidden lg:flex items-center gap-2'>
-            <a href="#">{choosenLanguage[selectedLang].Home}</a>
-            <a href="#">{choosenLanguage[selectedLang].TvShows}</a>
-            <a href="#">{choosenLanguage[selectedLang].Movies}</a>
-            <a href="#">{choosenLanguage[selectedLang].NewPopular}</a>
-            <a href="#">{choosenLanguage[selectedLang].MyList}</a>
-            <a href="#">{choosenLanguage[selectedLang].Browselanguages}</a>
+          <img src={Logo} alt="Netflix logo" className='w-38 h-18  sm:w-42 sm:h-20' onClick={scrollToTop} />
+          <div className='hidden lg:flex items-center gap-4'>
+            <a onClick={() => handleScroll('nowPlaying') } className='hover:text-lg transition-all '>{choosenLanguage[selectedLang].NowPlaying }</a>
+            <a onClick={() => handleScroll('popularMovies')} className='hover:text-lg transition-all '>{choosenLanguage[selectedLang].PopularMovies}</a>
+            <a onClick={() => handleScroll('topRated')} className='hover:text-lg transition-all '>{choosenLanguage[selectedLang].TopRated}</a>
+            <a onClick={()=> handleScroll('UpcomingMovies')} className='hover:text-lg transition-all '>{choosenLanguage[selectedLang].UpcomingMovies}</a>
+            <a onClick={() => handleScroll('horror')} className='hover:text-lg transition-all '>{choosenLanguage[selectedLang].Horror}</a>
           </div>
         </div>
         <div className='flex gap-1 md:gap-4 lg:gap-4 items-center pr-2'>

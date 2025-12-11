@@ -14,7 +14,6 @@ const Footer = () => {
 
     const handleLang = (e) => {
         dispatch(changeLanguage(e.target.value))
-        console.log(e.target.value)
     }
     return (
         <div className='bg-[#141414] h-70 lg:h-90  md:h-86 w-full text-[#BABABA] pt-14 pl-4 lg:pl-22 lg:text-xl text-[16px]  lg:mt-0'>

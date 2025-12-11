@@ -10,7 +10,7 @@ export const API_OPTIONS = {
     }
 };
 
-export const IMAGE_URL = "https://image.tmdb.org/t/p/w780"
+export const IMAGE_URL = "https://image.tmdb.org/t/p/w500"
 
 export const LANGUAGES_SUPPORTED = [{identifier:"en",name:"English"},{identifier:"hindi",name:"Hindi"}]
 

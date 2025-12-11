@@ -13,13 +13,23 @@ const SecondaryContainer = () => {
   if (!movies || movies.length === 0) return null;
 
   return (
-    <div className=" bg-black ">
+    <div className=" bg-black min-h-screen ">
       <div className='-mt-82 md:-mt-92  lg:-mt-32 relative z-10 -pb-2'>
-      <MovieList title="Now Playing" movies={movies} />
-      <MovieList title="Popular Movies" movies={popularMovies} />
-      <MovieList title="Top Rated" movies={topRatedMovies} />
-      <MovieList title="Upcoming Movies" movies={upcomingMovies} />
-      <MovieList title="Horror" movies={movies} />
+      <section id="nowPlaying"> 
+          <MovieList title="Now Playing" movies={movies} />
+      </section>
+      <section id="popularMovies"> 
+          <MovieList title="Popular Movies" movies={popularMovies} />
+      </section>
+      <section id="topRated"> 
+          <MovieList title="Top Rated" movies={topRatedMovies} />
+      </section>
+      <section id="upcomingMovies"> 
+          <MovieList title="Upcoming Movies" movies={upcomingMovies} />
+      </section>
+      <section id="horror"> 
+          <MovieList title="Horror" movies={movies} />
+      </section>
       </div>
     </div>
   )

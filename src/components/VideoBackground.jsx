@@ -1,18 +1,20 @@
-import React, { useRef, useState } from 'react';
+import React, {useEffect, useRef, useState } from 'react';
 import { auth } from '../utils/Firebase';
-import { signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import useMovie from '../Hooks/useMovie';
 import useMovieDetail from '../Hooks/useMovieDetail';
 import { useSelector } from 'react-redux';
 import MovieList from './MovieList';
 import DetailCard from './DetailCard';
 import Footer from './Footer';
+import Head from './Head';
+import { Link, Navigate, useNavigate } from 'react-router';
 
 const VideoBackground = ({ movieId }) => {
 
     const videoKey = useMovie(movieId);
     useMovieDetail(movieId);
-    
+    const navigate = useNavigate();
     
     const movieDetails = useSelector(store => store.movies.movieDetail);
     const popularMovies = useSelector((store) => store.movies?.popular);
@@ -26,10 +28,21 @@ const VideoBackground = ({ movieId }) => {
     const [isMuted, setIsMuted] = useState(true);
     const [isPlaying, setIsPlaying] = useState(true);
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                navigate("/");
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
+
     if (!movieDetails) return <div className="min-h-screen bg-black text-white flex justify-center items-center">Loading...</div>;
     
     const handleSignOut = () => {
         signOut(auth).catch((error) => console.log(error));
+        navigate('/')
     };
 
 
@@ -78,7 +91,10 @@ const VideoBackground = ({ movieId }) => {
         <div className="min-h-screen bg-[#141414] text-white flex flex-col items-center pt-4 md:pt-6 px-4 md:px-8 font-sans selection:bg-red-600 selection:text-white">
 
             <header className="w-full max-w-[1300px] flex justify-between items-center mb-6 z-20">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" className="h-6 md:h-9" />
+                <Link 
+                    to={'/browse'}>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" className="h-6 md:h-9" />    
+                </Link>
                 <button
                     className="bg-white text-black font-bold px-3 py-1 md:px-4 md:py-1.5 rounded text-xs md:text-sm hover:bg-gray-200 transition"
                     onClick={handleSignOut}
@@ -86,6 +102,7 @@ const VideoBackground = ({ movieId }) => {
                     Sign Out
                 </button>
             </header>
+            
 
             <div className="hidden md:flex bg-[rgba(0,0,0,0.45)] border border-[rgba(255,255,255,0.2)] rounded-full p-[3px] backdrop-blur-sm mb-4 shadow-2xl gap-3 z-30 sticky top-4">
                 <button 
