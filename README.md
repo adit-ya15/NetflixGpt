@@ -2,6 +2,9 @@
 
 A Netflix-style full-stack frontend application that helps users discover movies using AI-powered recommendations based on user mood and preferences.
 
+## 🚀 Live Demo
+   https://aipoweredmovieapp.netlify.app/
+
 ## 🧠 Problem Statement
 Users often know they want to watch something, but don’t know **what** to watch.  
 This application solves that by combining a familiar Netflix-like UI with **AI-driven movie suggestions**.
