@@ -1,6 +1,14 @@
 # AI-Powered Movie Recommendation App
 
-A Netflix-style full-stack frontend application that helps users discover movies using AI-powered recommendations based on user mood and preferences.
+
+## TL;DR
+- Netflix-style UI with AI-powered movie recommendations
+- Built using React, Redux, and Gemini AI
+- Focused on performance (lazy loading, optimized state)
+- Deployed on Netlify
+
+
+A Netflix-style frontend heavy application that helps users discover movies using AI-powered recommendations based on user mood and preferences.
 
 ## 🚀 Live Demo
    https://aipoweredmovieapp.netlify.app/
@@ -62,9 +70,16 @@ src/
 - Improved AI prompt tuning
 
 ## 📷 Preview 
+### Authentication
 <img width="1915" height="1069" alt="image" src="https://github.com/user-attachments/assets/903adab2-dd5e-4d81-b0fc-1aa6ee9d3690" />
+
+### Home
 <img width="1920" height="1080" alt="Screenshot 2025-12-13 153721" src="https://github.com/user-attachments/assets/8a229e08-09d0-45cc-a5c7-104be37dad43" />
+
+### AI powered search page
 <img width="1920" height="1080" alt="Screenshot 2025-12-13 153733" src="https://github.com/user-attachments/assets/a3140a8d-66ef-4ee7-b51f-6f5a8b30f62f" />
+
+### Movie detail page
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/72194f0f-8673-4fef-a4e2-d814fa044cd2" />
 
 
