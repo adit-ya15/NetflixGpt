@@ -1,5 +1,5 @@
 # AI-Powered Movie Recommendation App
-A Netflix-style frontend heavy application that helps users discover movies using AI-powered recommendations based on user mood and preferences.
+A Netflix-style frontend focused application that helps users discover movies using AI-powered recommendations based on user mood and preferences.
 
 ## TL;DR
 - Netflix-style UI with AI-powered movie recommendations
@@ -44,6 +44,7 @@ This application solves that by combining a familiar Netflix-like UI with **AI-d
 - Lazy loading of routes and components
 - Efficient Redux store structure
 - Optimized API calls
+- Lighthouse audits were run on production builds using Chrome DevTools.
 
 ## 📂 Project Structure
 ```text
@@ -89,8 +90,8 @@ src/
 ## 🛠️ Run Locally
 
 ```bash
-git clone https://github.com/your-username/project-name.git
-cd project-name
+git clone https://github.com/adit-ya15/NetflixGpt.git
+cd NetflixGpt
 npm install
 npm run dev
 ```
