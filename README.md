@@ -42,9 +42,6 @@ This application solves that by combining a familiar Netflix-like UI with **AI-d
 - Efficient Redux store structure
 - Optimized API calls
 
-## 🧪 Testing
-- Basic unit testing using Jest and React Testing Library
-
 ## 📂 Project Structure
 ```text
 src/
