@@ -1,7 +1,7 @@
 import React from "react";
-import { IMAGE_URL } from "../utils/constants";
+import { IMAGE_URL_W200 } from "../utils/constants";
 
-const MovieCard = ({ imageId }) => {
+const MovieCard = ({ imageId, title }) => {
   if (!imageId) return null;
 
   return (
@@ -15,11 +15,11 @@ const MovieCard = ({ imageId }) => {
       {/* Added bg-gray-800 to prevent layout shift before image loads */}
       <div className="relative rounded-md overflow-hidden bg-gray-800 aspect-[2/3]">
         <img
-          src={IMAGE_URL + imageId}
-          alt="movie poster"
+          src={IMAGE_URL_W200 + imageId}
+          alt={title || "movie poster"}
           loading="lazy"         // 1. PERFORMANCE: Lazy loads images off-screen
-          width="500"            // 2. CLS: Helps browser reserve space
-          height="750"
+          width="200"            // 2. CLS: Helps browser reserve space
+          height="300"
           className="w-[90%] md:w-full h-full object-cover rounded-md"
         />
 
@@ -33,7 +33,7 @@ const MovieCard = ({ imageId }) => {
           "
         >
           {/* 3. ACCESSIBILITY: Added aria-label to fix lighthouse errors */}
-          <button 
+          <button
             aria-label="Play"
             className="bg-white rounded-full p-1 transition-transform duration-300 hover:scale-110"
           >
@@ -42,7 +42,7 @@ const MovieCard = ({ imageId }) => {
             </svg>
           </button>
 
-          <button 
+          <button
             aria-label="Add to list"
             className="border border-white rounded-full p-1 transition-transform duration-300 hover:scale-110"
           >
@@ -51,7 +51,7 @@ const MovieCard = ({ imageId }) => {
             </svg>
           </button>
 
-          <button 
+          <button
             aria-label="Like"
             className="border border-white rounded-full p-1 transition-transform duration-300 hover:scale-110"
           >

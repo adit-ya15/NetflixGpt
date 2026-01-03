@@ -61,8 +61,8 @@ const Head = () => {
 
   const handleScroll = (id) => {
     const element = document.getElementById(id);
-    if(element) {
-      element.scrollIntoView({behavior:"smooth"});
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
   }
 
@@ -76,12 +76,14 @@ const Head = () => {
   return (
     <>
       {!user && <div className='absolute left-[8%] top-5'
-        
+
       >
         <img
           src={Logo}
           alt="logo"
           className='w-42 h-20'
+          width="168"
+          height="80"
           onClick={scrollToTop}
         />
       </div>}
@@ -90,13 +92,13 @@ const Head = () => {
     `}
       >
         <div className='flex gap-2'>
-          <img src={Logo} alt="Netflix logo" className='w-38 h-18  sm:w-42 sm:h-20' onClick={scrollToTop} />
+          <img src={Logo} alt="Netflix logo" className='w-38 h-18 sm:w-42 sm:h-20' width="168" height="80" onClick={scrollToTop} />
           <div className='hidden lg:flex items-center gap-4'>
-            <a onClick={() => handleScroll('nowPlaying') } className='hover:text-lg transition-all '>{choosenLanguage[selectedLang].NowPlaying }</a>
-            <a onClick={() => handleScroll('popularMovies')} className='hover:text-lg transition-all '>{choosenLanguage[selectedLang].PopularMovies}</a>
-            <a onClick={() => handleScroll('topRated')} className='hover:text-lg transition-all '>{choosenLanguage[selectedLang].TopRated}</a>
-            <a onClick={()=> handleScroll('UpcomingMovies')} className='hover:text-lg transition-all '>{choosenLanguage[selectedLang].UpcomingMovies}</a>
-            <a onClick={() => handleScroll('horror')} className='hover:text-lg transition-all '>{choosenLanguage[selectedLang].Horror}</a>
+            <button onClick={() => handleScroll('nowPlaying')} className='hover:text-lg transition-all cursor-pointer'>{choosenLanguage[selectedLang].NowPlaying}</button>
+            <button onClick={() => handleScroll('popularMovies')} className='hover:text-lg transition-all cursor-pointer'>{choosenLanguage[selectedLang].PopularMovies}</button>
+            <button onClick={() => handleScroll('topRated')} className='hover:text-lg transition-all cursor-pointer'>{choosenLanguage[selectedLang].TopRated}</button>
+            <button onClick={() => handleScroll('UpcomingMovies')} className='hover:text-lg transition-all cursor-pointer'>{choosenLanguage[selectedLang].UpcomingMovies}</button>
+            <button onClick={() => handleScroll('horror')} className='hover:text-lg transition-all cursor-pointer'>{choosenLanguage[selectedLang].Horror}</button>
           </div>
         </div>
         <div className='flex gap-1 md:gap-4 lg:gap-4 items-center pr-2'>
@@ -108,7 +110,7 @@ const Head = () => {
           />
 
           <div className='hidden lg:flex gap-4 items-center'>
-            <a href="#">{choosenLanguage[selectedLang].Children}</a>
+            <button className='cursor-pointer'>{choosenLanguage[selectedLang].Children}</button>
 
             <FontAwesomeIcon
               icon={faBell}
@@ -120,6 +122,8 @@ const Head = () => {
             src={user.photoURL}
             alt="user"
             className='w-10 h-10 rounded'
+            width="40"
+            height="40"
           />
 
           <FontAwesomeIcon

@@ -6,11 +6,11 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { auth } from '../utils/Firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
-import { userImage,loginPageBackgroundImage } from '../utils/constants';
+import { userImage, loginPageBackgroundImage } from '../utils/constants';
 
 const Login = () => {
 
-    
+
     const dispatch = useDispatch()
     const [isSignUp, setSignUp] = useState(false);
     const [isChecked, setIsChecked] = useState(true);
@@ -30,7 +30,7 @@ const Login = () => {
         if (isSignUp) {
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    
+
                     const user = userCredential.user;
                     updateProfile(user, {
                         displayName: name,
@@ -43,7 +43,7 @@ const Login = () => {
                             displayName: displayName,
                             photoURL: photoURL
                         }))
-                        
+
                     }).catch((error) => {
                         setMessage(error.message)
                     });
@@ -55,12 +55,12 @@ const Login = () => {
                     setMessage(errorCode + '-' + errorMessage)
                 });
         } else {
-            
+
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    
+
                     const user = userCredential.user;
-                
+
                     const { uid, email: userEmail, displayName, photoURL } = user;
                     dispatch(addUser({
                         uid,
@@ -68,7 +68,7 @@ const Login = () => {
                         displayName,
                         photoURL
                     }));
-                    
+
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -78,7 +78,7 @@ const Login = () => {
 
         };
     }
- 
+
     const errorStyle = message ? "border-red-500" : "border-[#323233]";
 
     return (
@@ -107,7 +107,7 @@ const Login = () => {
                         />
                     )}
 
-                    
+
                     <input
                         type="text"
                         value={email}
@@ -116,7 +116,7 @@ const Login = () => {
                         className={`h-14 bg-[#0F0F0F] border p-2 px-4 mb-5 rounded-sm font-bold ${errorStyle}`}
                     />
 
-                    
+
                     <input
                         type="password"
                         value={password}
@@ -127,7 +127,7 @@ const Login = () => {
 
                     <p className='text-red-500 mb-1'>{message}</p>
 
-                    
+
                     {isSignUp ? (
                         <button
                             className='bg-[#E50914] w-full rounded-lg p-2 mb-5 font-bold cursor-pointer'
@@ -195,7 +195,7 @@ const Login = () => {
                 </form>
             </div>
             <div className='h-screen lg:bg-cover lg:bg-center md:-mb-85 lg:mb-0'>
-                <img src={loginPageBackgroundImage} alt="background image" className='h-screen w-screen sm:h-[855px]  lg:h-[854px]'/>
+                <img src="/background_large.jpg" alt="background image" fetchpriority="high" className='h-screen w-screen sm:h-[855px] lg:h-[854px] object-cover' />
             </div>
             <Footer />
         </div>

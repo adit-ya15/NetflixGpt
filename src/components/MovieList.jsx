@@ -11,7 +11,7 @@ const MovieList = ({ title, movies }) => {
 
       <div className="flex overflow-x-scroll movie-row md:gap-4 pb-4 [&::-webkit-scrollbar]:hidden">
         {movies?.map((movie) => (
-          <Link to={`/details/${movie.id}`} key={movie.id}><MovieCard imageId={movie?.poster_path} key={movie.id} /></Link>
+          <Link to={`/details/${movie.id}`} key={movie.id}><MovieCard imageId={movie?.poster_path} title={movie.title || movie.name} key={movie.id} /></Link>
         ))}
       </div>
     </div>
